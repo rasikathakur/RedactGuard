@@ -7,47 +7,6 @@
 ![Platform](https://img.shields.io/badge/platform-Chromium%20Extension-yellow?logo=googlechrome)
 
 **REDACT** is a secure and easy-to-use Chrome Extension that performs redaction, masking, and anonymization of sensitive data—particularly Personally Identifiable Information (PII)—from documents. Built for privacy, it supports PDFs, images, and Word documents directly from your browser using a FastAPI Python backend.
-
----
-
-## 📦 Project Structure
-
-```
-
-redact-chrome-extension/
-│
-├── backend/                  # FastAPI Python backend
-│   ├── app/
-│   │   ├── main.py           # FastAPI app, handles /redact endpoint
-│   │   ├── com.py            # Dispatcher: picks correct redactor based on file type
-│   │   ├── model/            # Redaction logic for each file format
-│   │   │   ├── PDFRedactor.py
-│   │   │   ├── ImageRedactor.py
-│   │   │   ├── DOCRedactor.py
-│   │   │   └── ...
-│   │   └── utils.py          # Temporary file handling, cleanup, CORS config
-│   ├── requirements.txt      # Python dependencies
-│   ├── Dockerfile            # Dockerized backend for deployment
-│   └── .env.example          # Sample environment variable file
-│
-├── extension/                # Chrome Extension frontend
-│   ├── manifest.json         # Chrome extension config (MV3)
-│   ├── popup.html            # UI interface
-│   ├── popup.css             # Styling
-│   ├── popup.js              # Logic to send files to FastAPI backend
-│   └── icons/                # 16x16, 48x48, 128x128 icons
-│
-├── docs/                     # Documentation & diagrams
-│   └── architecture.md
-│
-├── .gitignore                # Ignored files & folders
-├── README.md                 # You're here!
-└── LICENSE                   # MIT License
-
-````
-
----
-
 ## 🧠 System Architecture
 
 ```text
@@ -84,40 +43,6 @@ redact-chrome-extension/
 
 ---
 
-## ⚙️ Getting Started
-
-### 🔧 Backend Setup (Python 3.10+)
-
-```bash
-# Navigate to backend/
-cd backend
-
-# Create a virtual environment
-python -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate on Windows
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run FastAPI with uvicorn
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-```
-
-Once running, your API will be available at: `http://localhost:8000/redact`
-
----
-
-### 🌐 Chrome Extension Setup
-
-1. Navigate to `chrome://extensions`
-2. Enable **Developer Mode**
-3. Click **Load unpacked**
-4. Select the `extension/` folder
-
-Now your extension will be active in the Chrome toolbar.
-
----
-
 ## 📤 Upload Flow
 
 1. Select a file using the extension popup
@@ -128,13 +53,7 @@ Now your extension will be active in the Chrome toolbar.
 
 ---
 
-## 🧪 Testing Tips
 
-* Use test documents with **mock PII** (names, emails, Aadhaar numbers)
-* Run backend with `--reload` during development for auto-restart
-* Verify extension behavior in **Incognito mode** too
-
----
 
 ## 🛠 Tech Stack
 
@@ -147,27 +66,3 @@ Now your extension will be active in the Chrome toolbar.
 | Storage   | Ephemeral + tempfile-based    |
 
 ---
-
-## 🧹 Cleanup & Security
-
-* All uploaded files are saved in a temp folder and deleted immediately after processing
-* CORS is restricted to the extension only
-* No data is stored or logged
-
----
-
-## 📚 License
-
-This project is licensed under the GNU GENERAL PUBLIC LICENSE v3
-
----
-
-## 🤝 Contributing
-
-1. Fork the repo
-2. Create a feature branch (`git checkout -b feat/my-feature`)
-3. Push to your branch (`git push origin feat/my-feature`)
-4. Create a Pull Request 🚀
-
-
-
