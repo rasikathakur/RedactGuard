@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 # 🕵️‍♂️ REDACT — Privacy-First Redaction Chrome Extension
 
 ![FastAPI](https://img.shields.io/badge/backend-FastAPI-009688?logo=fastapi)
